@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d32d5dc5-a07f-40c7-b567-2067c8d5ea97" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../TTM-Website/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TTM-Website/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TTM-Website/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../TTM-Website/client/src/App.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,15 +55,16 @@
           <entry key="gitignore" value="22" />
           <entry key="js" value="763" />
           <entry key="json" value="53" />
-          <entry key="vue" value="1942" />
+          <entry key="txt" value="44" />
+          <entry key="vue" value="2203" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="53" />
           <entry key="JavaScript" value="763" />
-          <entry key="PLAIN_TEXT" value="22" />
-          <entry key="Vue.js" value="1942" />
+          <entry key="PLAIN_TEXT" value="66" />
+          <entry key="Vue.js" value="2203" />
         </counts>
       </usages-collector>
     </session>
@@ -77,8 +77,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../TTM-Website/client/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="24" column="33" lean-forward="true" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+            <state relative-caret-position="118">
+              <caret line="83" column="45" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="45" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#v-footer#0;n#v-app#0;n#template#0;n#!!top" expanded="true" />
               </folding>
@@ -116,8 +116,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../TTM-Website/client/src/components/Home.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+            <state relative-caret-position="184">
+              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -281,12 +281,20 @@
       <updated>1547654955632</updated>
       <workItem from="1547654958228" duration="48000" />
       <workItem from="1547655014928" duration="4482000" />
-      <workItem from="1547661395575" duration="13755000" />
+      <workItem from="1547661395575" duration="15137000" />
     </task>
+    <task id="LOCAL-00001" summary="Added sidebar for mobile">
+      <created>1547750801723</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1547750801723</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18285000" />
+    <option name="totallyTimeSpent" value="19667000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -299,7 +307,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="814" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49804688" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" sideWeight="0.5019531" side_tool="true" weight="0.24947146" />
@@ -312,8 +319,8 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.22946176" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49964765" weight="0.27478755" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49964765" visible="true" weight="0.25070822" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.5003524" side_tool="true" visible="true" weight="0.25070822" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5003524" side_tool="true" weight="0.27478755" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -323,13 +330,44 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
+    <option name="myShow1" value="true" />
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
+      <path value="$PROJECT_DIR$/../TTM-Website" />
     </ignored-roots>
+    <MESSAGE value="Added sidebar for mobile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sidebar for mobile" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../TTM-Website/package.json">
@@ -413,15 +451,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../TTM-Website/client/src/components/Home.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        <state relative-caret-position="184">
+          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../TTM-Website/client/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="24" column="33" lean-forward="true" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+        <state relative-caret-position="118">
+          <caret line="83" column="45" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="45" />
           <folding>
             <element signature="n#style#0;n#span#0;n#v-footer#0;n#v-app#0;n#template#0;n#!!top" expanded="true" />
           </folding>
