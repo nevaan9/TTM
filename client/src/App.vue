@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app :dark="theme">
     <!--Toolbar-->
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
@@ -9,10 +9,17 @@
       <!--Web-->
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn
-                v-for="item in items"
+                v-for="(item, index) in items"
+                :key="index"
                 flat
                 @click="goToNamedRoute(item.title)"
         >{{ item.title }}
+        </v-btn>
+        <v-btn
+                flat
+                @click="theme = !theme"
+        >
+          Toggle Theme
         </v-btn>
       </v-toolbar-items>
       <!--Mobile-->
@@ -72,7 +79,6 @@
 </template>
 
 <script>
-import HelloWorld from './components/Home'
 
 export default {
   name: 'App',
@@ -85,7 +91,8 @@ export default {
             { title: 'Photos', icon: 'question_answer' },
             { title: 'Blog', icon: 'question_answer' },
             { title: 'Resume', icon: 'question_answer' },
-        ]
+        ],
+        theme: true
     }
   },
     methods: {
