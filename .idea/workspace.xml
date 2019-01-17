@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d32d5dc5-a07f-40c7-b567-2067c8d5ea97" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../TTM-Website/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../TTM-Website/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../TTM-Website/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TTM-Website/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -77,8 +78,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../TTM-Website/client/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="83" column="45" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="45" />
+            <state relative-caret-position="239">
+              <caret line="54" column="51" lean-forward="true" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#v-footer#0;n#v-app#0;n#template#0;n#!!top" expanded="true" />
               </folding>
@@ -89,8 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../TTM-Website/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+            <state>
+              <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -190,11 +191,11 @@
         <option value="$PROJECT_DIR$/client/src/plugins/vuetify.js" />
         <option value="$PROJECT_DIR$/client/src/App.vue" />
         <option value="$PROJECT_DIR$/../TTM-Website/client/src/components/Photos.vue" />
-        <option value="$PROJECT_DIR$/../TTM-Website/.gitignore" />
         <option value="$PROJECT_DIR$/../TTM-Website/server/index.js" />
         <option value="$PROJECT_DIR$/../TTM-Website/client/vue.config.js" />
         <option value="$PROJECT_DIR$/../TTM-Website/client/src/components/Home.vue" />
         <option value="$PROJECT_DIR$/../TTM-Website/client/src/App.vue" />
+        <option value="$PROJECT_DIR$/../TTM-Website/.gitignore" />
       </list>
     </option>
   </component>
@@ -281,7 +282,7 @@
       <updated>1547654955632</updated>
       <workItem from="1547654958228" duration="48000" />
       <workItem from="1547655014928" duration="4482000" />
-      <workItem from="1547661395575" duration="15137000" />
+      <workItem from="1547661395575" duration="15412000" />
     </task>
     <task id="LOCAL-00001" summary="Added sidebar for mobile">
       <created>1547750801723</created>
@@ -294,7 +295,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19667000" />
+    <option name="totallyTimeSpent" value="19942000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -307,6 +308,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="814" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49804688" visible="true" weight="0.24947146" />
       <window_info id="Structure" order="1" sideWeight="0.5019531" side_tool="true" weight="0.24947146" />
@@ -319,8 +321,8 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49964765" visible="true" weight="0.25070822" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.5003524" side_tool="true" visible="true" weight="0.25070822" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" sideWeight="0.4989429" visible="true" weight="0.25070822" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.5010571" side_tool="true" visible="true" weight="0.25070822" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5003524" side_tool="true" weight="0.27478755" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -364,7 +366,6 @@
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
-      <path value="$PROJECT_DIR$/../TTM-Website" />
     </ignored-roots>
     <MESSAGE value="Added sidebar for mobile" />
     <option name="LAST_COMMIT_MESSAGE" value="Added sidebar for mobile" />
@@ -428,13 +429,6 @@
     <entry file="file://$PROJECT_DIR$/../TTM-Website/client/package.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../TTM-Website/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../TTM-Website/server/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="433">
@@ -456,10 +450,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../TTM-Website/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../TTM-Website/client/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="83" column="45" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="45" />
+        <state relative-caret-position="239">
+          <caret line="54" column="51" lean-forward="true" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
           <folding>
             <element signature="n#style#0;n#span#0;n#v-footer#0;n#v-app#0;n#template#0;n#!!top" expanded="true" />
           </folding>
