@@ -13,7 +13,6 @@
         </v-btn>
         <v-navigation-drawer
                 v-model="drawer"
-                :mini-variant="mini"
                 absolute
                 dark
                 temporary
@@ -24,7 +23,6 @@
                 <v-list-tile
                         v-for="item in items"
                         :key="item.title"
-                        @click=""
                 >
                     <v-list-tile-action>
                         <v-icon>{{ item.icon }}</v-icon>
@@ -45,6 +43,7 @@
             >
                 <v-flex
                         v-for="n in 10"
+                        :key="n"
                         xs6
                         sm4
                 >
