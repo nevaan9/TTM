@@ -13,9 +13,11 @@
                 :key="index"
                 flat
                 @click="goToNamedRoute(item.title)"
+                :color="theme === false ? (routeName === item.title ? `black` : `grey`) : (routeName === item.title ? `white` : `grey`)"
         >{{ item.title }}
         </v-btn>
         <v-btn
+                color="grey"
                 flat
                 @click="theme = !theme"
         >
@@ -100,7 +102,10 @@ export default {
           this.$router.push({ name: namedRoute });
       }
     },
-    mounted () {
+    computed: {
+      routeName () {
+          return this.$route.name;
+      }
     }
 }
 </script>

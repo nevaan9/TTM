@@ -15,22 +15,20 @@
                 absolute
                 temporary
         >
-            <v-list class="pt-0" dense>
-                <v-divider light></v-divider>
-
-                <v-list-tile
-                        v-for="item in items"
-                        :key="item.title"
-                >
-                    <v-list-tile-action>
-                        <v-icon>{{ item.icon }}</v-icon>
-                    </v-list-tile-action>
-
-                    <v-list-tile-content>
-                        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                    </v-list-tile-content>
-                </v-list-tile>
-            </v-list>
+            <v-treeview
+                    v-model="tree"
+                    :load-children="fetch"
+                    :items="treeItems"
+                    active-class="grey lighten-4 indigo--text"
+                    selected-color="indigo"
+                    open-on-click
+                    selectable
+                    expand-icon="mdi-chevron-down"
+                    on-icon="mdi-bookmark"
+                    off-icon="mdi-bookmark-outline"
+                    indeterminate-icon="mdi-bookmark-minus"
+            >
+            </v-treeview>
         </v-navigation-drawer>
 
         <!--PHOTOS-->
@@ -77,13 +75,47 @@
                     'https://placekitten.com/805/800',
                     image1
                 ],
-                index: null
+                index: null,
+                breweries: [],
+                isLoading: false,
+                tree: [],
+                types: [],
+                treeItems: [
+                    {
+                        id: 1,
+                        name: 'All Photos',
+                        children: [
+                            {
+                                id: 2,
+                                name: 'SLU'
+                            },
+                            {
+                                id: 3,
+                                name: 'Pub 56'
+                            },
+                            {
+                                id: 4,
+                                name: 'China'
+                            },
+                            {
+                                id: 5,
+                                name: 'Israel'
+                            },
+                        ]
+                    }
+                ]
+            }
+        },
+        methods: {
+            fetch () {
+                setTimeout(() => {
+                }, 3000)
             }
         }
     }
 </script>
 
-<style>
+<style scoped>
     .grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
