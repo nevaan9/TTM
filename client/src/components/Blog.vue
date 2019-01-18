@@ -1,29 +1,23 @@
 <template>
-    <v-layout
-            wrap
+    <Content
+            :side-bar-title="sideBarTitle"
     >
-        <!--ALBUMS NAV DRAWER-->
-        <v-btn
-                class="accent mt-0 ml-0"
-                @click.stop="drawer = !drawer"
-        >
-            <v-icon>mdi-image-album</v-icon>
-        </v-btn>
-        <v-navigation-drawer
-                v-model="drawer"
-                small
-                absolute
-                temporary
-        >
-            <p>Add Blog Sidebar Here</p>
-        </v-navigation-drawer>
-    </v-layout>
+        <v-flex>
+            <h2>Blogs</h2>
+        </v-flex>
+    </Content>
 </template>
 
 <script>
+    import Content from './Content'
     export default {
+        name: 'Blog',
+        components: {
+            Content
+        },
         data () {
             return {
+                sideBarTitle: 'All Blogs',
                 drawer: null,
                 items: [
                     { title: 'All Photos', icon: 'dashboard' },

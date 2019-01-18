@@ -1,71 +1,30 @@
 <template>
-    <v-layout
-            wrap
+    <Content
+            :side-bar-title="sideBarTitle"
     >
-        <!--ALBUMS NAV DRAWER-->
-        <v-btn
-                class="accent mt-0 ml-0"
-                @click.stop="drawer = !drawer"
+        <v-flex
+                class="grid"
         >
-            <v-icon>mdi-image-album</v-icon>
-        </v-btn>
-        <v-navigation-drawer
-                v-model="drawer"
-                small
-                absolute
-                temporary
-        >
-            <v-treeview
-                    v-model="tree"
-                    :load-children="fetch"
-                    :items="treeItems"
-                    active-class="grey lighten-4 indigo--text"
-                    selected-color="indigo"
-                    open-on-click
-                    selectable
-                    expand-icon="mdi-chevron-down"
-                    on-icon="mdi-bookmark"
-                    off-icon="mdi-bookmark-outline"
-                    indeterminate-icon="mdi-bookmark-minus"
-            >
-            </v-treeview>
-        </v-navigation-drawer>
-
-        <!--PHOTOS-->
-        <v-container fluid grid-list-lg style="padding-top: 0px">
-            <v-layout
-                    row
-                    wrap
-            >
-                <v-flex
-                        class="grid"
-                >
-                    <img class="img" v-for="(image, i) in images" :src="image" :key="i" @click="index = i">
-                    <vue-gallery-slideshow :images="images" :index="index" @close="index = null"></vue-gallery-slideshow>
-                </v-flex>
-            </v-layout>
-        </v-container>
-    </v-layout>
+            <img class="img" v-for="(image, i) in images" :src="image" :key="i" @click="index = i">
+            <vue-gallery-slideshow :images="images" :index="index" @close="index = null"></vue-gallery-slideshow>
+        </v-flex>
+    </Content>
 </template>
 
 <script>
+    import Content from './Content'
     import VueGallerySlideshow from 'vue-gallery-slideshow';
     import image1 from '../images/captain.jpeg'
     import image2 from '../images/snow.jpeg'
     export default {
         name: 'Photos',
         components: {
-            VueGallerySlideshow
+            VueGallerySlideshow,
+            Content
         },
         data () {
             return {
-                drawer: null,
-                items: [
-                    { title: 'All Photos', icon: 'dashboard' },
-                    { title: 'SLU', icon: 'question_answer' },
-                    { title: 'China', icon: 'question_answer' },
-                ],
-                right: null,
+                sideBarTitle: 'All Photos',
                 images: [
                     image2,
                     'https://placekitten.com/801/800',
@@ -76,40 +35,6 @@
                     image1
                 ],
                 index: null,
-                breweries: [],
-                isLoading: false,
-                tree: [],
-                types: [],
-                treeItems: [
-                    {
-                        id: 1,
-                        name: 'All Photos',
-                        children: [
-                            {
-                                id: 2,
-                                name: 'SLU'
-                            },
-                            {
-                                id: 3,
-                                name: 'Pub 56'
-                            },
-                            {
-                                id: 4,
-                                name: 'China'
-                            },
-                            {
-                                id: 5,
-                                name: 'Israel'
-                            },
-                        ]
-                    }
-                ]
-            }
-        },
-        methods: {
-            fetch () {
-                setTimeout(() => {
-                }, 3000)
             }
         }
     }
