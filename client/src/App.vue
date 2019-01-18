@@ -74,8 +74,26 @@
       </v-list>
     </v-navigation-drawer>
     <!--Footer-->
-    <v-footer class="footer">
-      <span style="margin: auto">&copy; 2019 </span>
+    <v-footer
+            height="auto"
+    >
+      <v-card
+              class="flex"
+              flat
+              tile
+      >
+        <v-card-title class="accent darken-3 justify-center py-0">
+          <v-btn
+                  v-for="icon in icons"
+                  :key="icon"
+                  class="mx-3"
+                  dark
+                  icon
+          >
+            <v-icon size="24px">{{ icon }}</v-icon>
+          </v-btn>
+        </v-card-title>
+      </v-card>
     </v-footer>
   </v-app>
 </template>
@@ -92,9 +110,15 @@ export default {
             { title: 'Home', icon: 'dashboard' },
             { title: 'Photos', icon: 'question_answer' },
             { title: 'Blog', icon: 'question_answer' },
-            { title: 'Resume', icon: 'question_answer' },
+            { title: 'Contact', icon: 'question_answer' },
         ],
-        theme: false
+        theme: false,
+        icons: [
+            'mdi-facebook',
+            'mdi-instagram',
+            'mdi-linkedin',
+            'mdi-twitter',
+        ]
     }
   },
     methods: {
