@@ -4,13 +4,10 @@
     >
         <!--ALBUMS NAV DRAWER-->
         <v-btn
-                class="secondary"
-                small
-                block
+                class="accent mt-0 ml-0"
                 @click.stop="drawer = !drawer"
-                style="margin: 0;"
         >
-            <v-icon>home</v-icon>
+            <v-icon>mdi-image-album</v-icon>
         </v-btn>
         <v-navigation-drawer
                 v-model="drawer"

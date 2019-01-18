@@ -92,7 +92,7 @@ export default {
             { title: 'Blog', icon: 'question_answer' },
             { title: 'Resume', icon: 'question_answer' },
         ],
-        theme: true
+        theme: false
     }
   },
     methods: {
