@@ -5,17 +5,17 @@
           wrap>
             <!--Web-->
             <v-flex v-if="!isMobile" d-flex xs12 md8>
-                <v-img src="https://picsum.photos/510/300" aspect-ratio="1:10"></v-img>
+                <v-img src="https://picsum.photos/510/300" aspect-ratio="1:10">
+                </v-img>
             </v-flex>
             <v-flex d-flex xs12 md4>
                 <v-card color="blue lighten-2" dark>
-                    <v-card-text>
-                        <ul>
-                            <li
-                              v-for="(aboutItem, index) in aboutData.about"
-                              :key="index"
-                            > {{ aboutItem }}</li>
-                        </ul>
+                    <v-card-text
+                      class="text-xs-center text-md-left headline"
+                      v-for="(aboutItem, index) in aboutData.about"
+                      :key="index"
+                    >
+                        {{ aboutItem }}
                     </v-card-text>
                 </v-card>
             </v-flex>

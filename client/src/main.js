@@ -11,6 +11,7 @@ import Blog from './components/Blog';
 import Resume from './components/Resume';
 
 Vue.prototype.$axios = axios;
+Vue.prototype.$admin = true;
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
@@ -36,4 +37,4 @@ const router = new VueRouter({
 new Vue({
     router,
     render: h => h(App),
-}).$mount('#app')
+}).$mount('#app');

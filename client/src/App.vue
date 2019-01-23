@@ -19,9 +19,20 @@
         <v-btn
           color="grey"
           flat
-          @click="darkTheme = !darkTheme"
+          @click="toggleButton"
         >
           Toggle darkTheme
+        </v-btn>
+        <v-btn
+          fab
+          flat
+          v-if="isAdmin"
+          @click="toggleEditDialog(routeName)"
+        >
+          <v-icon
+          >
+            mdi-pencil-outline
+          </v-icon>
         </v-btn>
       </v-toolbar-items>
       <!--Mobile-->
@@ -103,7 +114,6 @@ export default {
   name: 'App',
   data () {
     return {
-      isAdmin: true,
       drawer: null,
       items: [
         { title: 'Home', icon: 'dashboard' },
@@ -123,11 +133,20 @@ export default {
   methods: {
     goToNamedRoute(namedRoute) {
       this.$router.push({ name: namedRoute });
+    },
+    toggleButton () {
+      this.darkTheme = !this.darkTheme;
+    },
+    toggleEditDialog (routeName) {
+      alert(routeName)
     }
   },
   computed: {
     routeName () {
       return this.$route.name;
+    },
+    isAdmin() {
+      return this.$admin;
     }
   }
 }
