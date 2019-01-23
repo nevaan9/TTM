@@ -2,6 +2,7 @@ import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
 import VueRouter from 'vue-router';
+import axios from 'axios';
 
 // Import the components
 import Home from './components/Home';
@@ -9,6 +10,7 @@ import Photos from './components/Photos';
 import Blog from './components/Blog';
 import Resume from './components/Resume';
 
+Vue.prototype.$axios = axios;
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;

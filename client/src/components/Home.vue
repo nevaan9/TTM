@@ -9,7 +9,14 @@
             </v-flex>
             <v-flex d-flex xs12 md4>
                 <v-card color="blue lighten-2" dark>
-                    <v-card-text>{{ lorem.slice(0, 100) }}</v-card-text>
+                    <v-card-text>
+                        <ul>
+                            <li
+                              v-for="(aboutItem, index) in aboutData.about"
+                              :key="index"
+                            > {{ aboutItem }}</li>
+                        </ul>
+                    </v-card-text>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -21,10 +28,15 @@
       name: 'Home',
       data: function () {
           return {
-              lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`
+              url: '/home',
+              requestData: null
           }
       },
       methods: {
+          async fetchData () {
+              const response = await this.$axios.get(this.url);
+              this.requestData = response.data;
+          }
       },
       computed: {
           isMobile () {
@@ -33,7 +45,13 @@
                   case 'xs': return true;
                   default: return false;
               }
+          },
+          aboutData () {
+              return this.requestData || 'Loading...'
           }
+      },
+      created() {
+          this.fetchData().catch(e => this.requestData = new Error(e));
       }
   }
 </script>

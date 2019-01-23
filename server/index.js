@@ -9,6 +9,12 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
+// Routes
+const home_routes = require('./routes/home');
+
+// Initialize Routes
+app.use('/home', home_routes);
+
 // Handle Production
 // Point to which public folder is our entry point
 if (process.env.NODE_ENV === 'production') {
