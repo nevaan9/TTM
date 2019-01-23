@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="theme">
+  <v-app :dark="darkTheme">
     <!--Toolbar-->
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
@@ -9,19 +9,19 @@
       <!--Web-->
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn
-                v-for="(item, index) in items"
-                :key="index"
-                flat
-                @click="goToNamedRoute(item.title)"
-                :color="theme === false ? (routeName === item.title ? `black` : `grey`) : (routeName === item.title ? `white` : `grey`)"
+          v-for="(item, index) in items"
+          :key="index"
+          flat
+          @click="goToNamedRoute(item.title)"
+          :color="darkTheme === false ? (routeName === item.title ? `black` : `grey`) : (routeName === item.title ? `white` : `grey`)"
         >{{ item.title }}
         </v-btn>
         <v-btn
-                color="grey"
-                flat
-                @click="theme = !theme"
+          color="grey"
+          flat
+          @click="darkTheme = !darkTheme"
         >
-          Toggle Theme
+          Toggle darkTheme
         </v-btn>
       </v-toolbar-items>
       <!--Mobile-->
@@ -37,11 +37,11 @@
     </v-content>
     <!--Mobile-->
     <v-navigation-drawer
-            v-model="drawer"
-            temporary
-            right
-            mini-variant
-            absolute
+      v-model="drawer"
+      temporary
+      right
+      mini-variant
+      absolute
     >
       <v-list class="pa-1">
         <v-list-tile avatar>
@@ -59,9 +59,9 @@
         <v-divider></v-divider>
 
         <v-list-tile
-                v-for="item in items"
-                :key="item.title"
-                @click="goToNamedRoute(item.title)"
+          v-for="item in items"
+          :key="item.title"
+          @click="goToNamedRoute(item.title)"
         >
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -75,20 +75,19 @@
     </v-navigation-drawer>
     <!--Footer-->
     <v-footer
-            height="auto"
+      height="auto"
     >
       <v-card
-              class="flex"
-              flat
-              tile
+        class="flex"
+        flat
+        tile
       >
-        <v-card-title class="accent darken-3 justify-center py-0">
+        <v-card-title :class="{secondary: !darkTheme, accent: darkTheme, 'darken-3': true, 'justify-center': true,  'py-0': true}">
           <v-btn
-                  v-for="icon in icons"
-                  :key="icon"
-                  class="mx-3"
-                  dark
-                  icon
+            v-for="icon in icons"
+            :key="icon"
+            class="mx-3"
+            dark icon
           >
             <v-icon size="24px">{{ icon }}</v-icon>
           </v-btn>
@@ -104,32 +103,32 @@ export default {
   name: 'App',
   data () {
     return {
-        isAdmin: true,
-        drawer: null,
-        items: [
-            { title: 'Home', icon: 'dashboard' },
-            { title: 'Photos', icon: 'question_answer' },
-            { title: 'Blog', icon: 'question_answer' },
-            { title: 'Contact', icon: 'question_answer' },
-        ],
-        theme: false,
-        icons: [
-            'mdi-facebook',
-            'mdi-instagram',
-            'mdi-linkedin',
-            'mdi-twitter',
-        ]
+      isAdmin: true,
+      drawer: null,
+      items: [
+        { title: 'Home', icon: 'dashboard' },
+        { title: 'Photos', icon: 'question_answer' },
+        { title: 'Blog', icon: 'question_answer' },
+        { title: 'Contact', icon: 'question_answer' },
+      ],
+      darkTheme: false,
+      icons: [
+        'mdi-facebook',
+        'mdi-instagram',
+        'mdi-linkedin',
+        'mdi-twitter',
+      ]
     }
   },
-    methods: {
-      goToNamedRoute(namedRoute) {
-          this.$router.push({ name: namedRoute });
-      }
-    },
-    computed: {
-      routeName () {
-          return this.$route.name;
-      }
+  methods: {
+    goToNamedRoute(namedRoute) {
+      this.$router.push({ name: namedRoute });
     }
+  },
+  computed: {
+    routeName () {
+      return this.$route.name;
+    }
+  }
 }
 </script>

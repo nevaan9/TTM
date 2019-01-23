@@ -1,8 +1,8 @@
 <template>
     <v-container fill-height fluid grid-list-md>
         <v-layout
-                row
-                wrap>
+          row
+          wrap>
             <!--Web-->
             <v-flex v-if="!isMobile" d-flex xs12 md8>
                 <v-img src="https://picsum.photos/510/300" aspect-ratio="1:10"></v-img>
