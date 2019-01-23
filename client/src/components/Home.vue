@@ -17,6 +17,25 @@
                     >
                         {{ aboutItem }}
                     </v-card-text>
+                    <v-card-text
+                      :class="['text-xs-center', 'text-md-left', 'headline', `${aboutData.textColor}--text`]"
+                    >
+                        <vue-typer
+                          :text='["Student","Economist","Traveller","Lover","Dreamer"]'
+                          :repeat='Infinity'
+                          :shuffle='false'
+                          initial-action='typing'
+                          :pre-type-delay='70'
+                          :type-delay='70'
+                          :pre-erase-delay='2000'
+                          :erase-delay='250'
+                          erase-style='clear'
+                          :erase-on-complete='false'
+                          caret-animation='blink'
+                        >
+
+                        </vue-typer>
+                    </v-card-text>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -24,8 +43,12 @@
 </template>
 
 <script>
+    import { VueTyper } from 'vue-typer'
   export default {
       name: 'Home',
+      components: {
+          VueTyper
+      },
       data: function () {
           return {
               url: '/home',
