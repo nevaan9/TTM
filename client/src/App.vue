@@ -93,14 +93,17 @@
         flat
         tile
       >
-        <v-card-title :class="{secondary: !darkTheme, accent: darkTheme, 'darken-3': true, 'justify-center': true,  'py-0': true}">
+        <v-card-title :class="{white: !darkTheme, black: darkTheme, 'darken-3': true, 'justify-center': true,  'py-0': true}">
           <v-btn
             v-for="icon in icons"
             :key="icon"
             class="mx-3"
-            dark icon
+            icon
           >
-            <v-icon size="24px">{{ icon }}</v-icon>
+            <v-icon
+              :color="darkTheme ? 'white' : 'black'"
+              size="24px"
+            >{{ icon }}</v-icon>
           </v-btn>
         </v-card-title>
       </v-card>

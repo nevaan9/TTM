@@ -5,13 +5,13 @@
           wrap>
             <!--Web-->
             <v-flex v-if="!isMobile" d-flex xs12 md8>
-                <v-img src="https://picsum.photos/510/300" aspect-ratio="1:10">
+                <v-img :src="aboutData.img" aspect-ratio="1:10">
                 </v-img>
             </v-flex>
             <v-flex d-flex xs12 md4>
-                <v-card color="blue lighten-2" dark>
+                <v-card :color="aboutData.cardColor">
                     <v-card-text
-                      class="text-xs-center text-md-left headline"
+                      :class="['text-xs-center', 'text-md-left', 'headline', `${aboutData.textColor}--text`]"
                       v-for="(aboutItem, index) in aboutData.about"
                       :key="index"
                     >
