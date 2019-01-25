@@ -31,22 +31,26 @@ app.get('/photos', (req, res) => {
         {
             url: `https://placekitten.com/${getRandomArbitrary(400, 800)}/${getRandomArbitrary(400, 800)}`,
             caption: 'A cat in the pool',
-            album: 1
+            albumName: 'SLU',
+            albumId: 1
         },
         {
             url: `https://placekitten.com/${getRandomArbitrary(400, 800)}/${getRandomArbitrary(400, 800)}`,
             caption: 'A cat in the pool whwhw',
-            album: 1
+            albumName: 'Israel',
+            albumId: 2
         },
         {
             url: `https://placekitten.com/${getRandomArbitrary(400, 800)}/${getRandomArbitrary(400, 800)}`,
             caption: 'A cat in the pool ahahahshhq dqhdhqdhq dhqeh ehfhe hefhef',
-            album: 2
+            albumName: 'SLU',
+            albumId: 1
         },
         {
             url: `https://placekitten.com/${getRandomArbitrary(400, 800)}/${getRandomArbitrary(400, 800)}`,
             caption: '',
-            album: 3
+            albumName: 'China',
+            albumId: 3
         },
     ]);
 });

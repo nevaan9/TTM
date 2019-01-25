@@ -1,6 +1,7 @@
 <template>
     <Content
       :side-bar-title="sideBarTitle"
+      :listItemData="listItemData"
     >
         <v-flex
           class="grid"
@@ -46,6 +47,23 @@
             },
             galleryImages() {
                 return this.data ? this.data.map(imageOb => imageOb.url) : []
+            },
+            listItemData () {
+                if (this.data) {
+                    const set = new Set();
+                    const listItems = [];
+                    this.data.forEach(imageObj => {
+                        if (!set.has(imageObj.albumId)){
+                            set.add(imageObj.albumId);
+                            listItems.push({
+                                name: imageObj.albumName,
+                                id: imageObj.albumId
+                            });
+                        }
+                    });
+                    return listItems
+                }
+                return []
             }
         },
         methods: {

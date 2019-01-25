@@ -15,20 +15,27 @@
           absolute
           temporary
         >
-            <v-treeview
-            v-model="tree"
-            :load-children="fetch"
-            :items="treeItems"
-            active-class="grey lighten-4 indigo--text"
-            selected-color="indigo"
-            open-on-click
-            selectable
-            expand-icon="mdi-chevron-down"
-            on-icon="mdi-bookmark"
-            off-icon="mdi-bookmark-outline"
-            indeterminate-icon="mdi-bookmark-minus"
+            <v-list
+              subheader
+              two-line
             >
-            </v-treeview>
+                <v-subheader>Filter by Album</v-subheader>
+
+                <v-list-tile
+                  v-for="(album, i) in listItemData"
+                  :key="i"
+                  @click="">
+                    <v-list-tile-action>
+                        <v-checkbox v-model="checkboxes" :value="album.id"></v-checkbox>
+                    </v-list-tile-action>
+
+                    <v-list-tile-content
+                      @click="listItemClicked(album.id)"
+                    >
+                        <v-list-tile-title>{{ album.name }}</v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+            </v-list>
         </v-navigation-drawer>
         <!--SLOT TO INJECT BLOG OR PHOTOS-->
         <v-container fluid grid-list-lg style="padding-top: 0px">
@@ -49,42 +56,30 @@ export default {
         sideBarTitle: {
             type: String,
             required: true
+        },
+        listItemData: {
+            type: Array,
+            required: true
         }
     },
     data () {
         return {
             drawer: null,
-            breweries: [],
-            isLoading: false,
-            tree: [],
-            types: [],
-            treeItems: [
-              {
-                  id: 1,
-                  name: this.sideBarTitle,
-                  children: [
-                    {
-                        id: 2,
-                        name: 'SLU'
-                    },
-                      {
-                          id: 3,
-                          name: 'Pub 56'
-                      },
-                      {
-                          id: 4,
-                          name: 'China'
-                      }
-                  ]
-              }
-            ]
+            checkboxes: []
         }
-        },
+    },
     methods: {
         fetch () {
             setTimeout(() => {
 
             }, 3000)
+        },
+        listItemClicked(id) {
+            if (this.checkboxes.includes(id)){
+                this.checkboxes = this.checkboxes.filter(albumId => albumId !== id);
+            } else {
+                this.checkboxes.push(id);
+            }
         }
     }
 }

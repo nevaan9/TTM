@@ -4,20 +4,16 @@
           row
           wrap>
             <!--Web-->
-            <v-flex v-if="!isMobile" d-flex xs12 md8>
-                <v-img :src="aboutData.img" aspect-ratio="1:10">
-                </v-img>
-            </v-flex>
-            <v-flex d-flex xs12 md4>
-                <v-card :color="aboutData.cardColor">
-                    <v-card-text
-                      :class="['text-xs-center', 'text-md-left', 'headline', `${aboutData.textColor}--text`]"
+            <v-flex v-if="!isMobile" d-flex xs12 sm6 md8>
+                <div :color="aboutData.cardColor">
+                    <div
+                      :class="['text-md-left', 'headline', `${aboutData.textColor}--text`]"
                       v-for="(aboutItem, index) in aboutData.about"
                       :key="index"
                     >
                         {{ aboutItem }}
-                    </v-card-text>
-                    <v-card-text
+                    </div>
+                    <div
                       :class="['text-xs-center', 'text-md-left', 'headline', `${aboutData.textColor}--text`]"
                     >
                         <vue-typer
@@ -34,8 +30,37 @@
                           caret-animation='blink'
                         >
                         </vue-typer>
-                    </v-card-text>
-                </v-card>
+                    </div>
+                </div>
+            </v-flex>
+            <v-flex v-if="!isMobile" d-flex xs12 sm6 md4>
+                <v-img :src="aboutData.img" aspect-ratio="1:10"></v-img>
+            </v-flex>
+            <v-flex v-if="isMobile" d-flex>
+                <v-img :src="aboutData.img" aspect-ratio="1:10">
+                    <v-layout
+                      class="align-center justify-center"
+                    >
+                        <v-flex
+                          class="headline ml-1 mt-1"
+                        >
+                            <vue-typer
+                              :text='["Student","Economist","Traveller","Lover","Dreamer"]'
+                              :repeat='Infinity'
+                              :shuffle='false'
+                              initial-action='typing'
+                              :pre-type-delay='70'
+                              :type-delay='70'
+                              :pre-erase-delay='2000'
+                              :erase-delay='250'
+                              erase-style='clear'
+                              :erase-on-complete='false'
+                              caret-animation='blink'
+                            >
+                            </vue-typer>
+                        </v-flex>
+                    </v-layout>
+                </v-img>
             </v-flex>
         </v-layout>
     </v-container>
@@ -63,7 +88,6 @@
       computed: {
           isMobile () {
               switch (this.$vuetify.breakpoint.name) {
-                  case 'sm': return true;
                   case 'xs': return true;
                   default: return false;
               }
