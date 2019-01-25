@@ -69,17 +69,18 @@ export default {
         }
     },
     methods: {
-        fetch () {
-            setTimeout(() => {
-
-            }, 3000)
-        },
         listItemClicked(id) {
             if (this.checkboxes.includes(id)){
                 this.checkboxes = this.checkboxes.filter(albumId => albumId !== id);
             } else {
                 this.checkboxes.push(id);
             }
+        }
+    },
+    watch: {
+        checkboxes: function (value) {
+            console.log('Emiting...');
+            this.$emit('filterClicked', new Set(value))
         }
     }
 }

@@ -2,6 +2,7 @@
     <Content
       :side-bar-title="sideBarTitle"
       :listItemData="listItemData"
+      @filterClicked="filterPhotos"
     >
         <v-flex
           class="grid"
@@ -9,6 +10,7 @@
             <v-layout
               column
               v-for="(image, i) in images"
+              :key="i"
             >
                 <v-flex>
                     <img class="img" :src="image.url" :key="i" @click="index = i">
@@ -25,17 +27,46 @@
 <script>
     import Content from './Content'
     import VueGallerySlideshow from 'vue-gallery-slideshow';
+    import axios from 'axios'
     export default {
         name: 'Photos',
         components: {
             VueGallerySlideshow,
             Content
         },
+        beforeRouteEnter (to, from, next) {
+            console.log('Before Enter....');
+            axios.get('/photos')
+              .then(response => {
+                next(vm => {
+                    vm.data = response.data;
+                    vm.allPhotos = response.data;
+                    vm.listItemData = (function (data) {
+                        const set = new Set();
+                        const listItems = [];
+                        data.forEach(imageObj => {
+                            if (!set.has(imageObj.albumId)){
+                                set.add(imageObj.albumId);
+                                listItems.push({
+                                    name: imageObj.albumName,
+                                    id: imageObj.albumId
+                                });
+                            }
+                        });
+                        return listItems
+                    })(response.data);
+                });
+            });
+        },
         data () {
             return {
                 sideBarTitle: 'All Photos',
                 data: null,
                 index: null,
+                error: null,
+                loading: null,
+                listItemData: [],
+                allPhotos: null
             }
         },
         created () {
@@ -47,29 +78,19 @@
             },
             galleryImages() {
                 return this.data ? this.data.map(imageOb => imageOb.url) : []
-            },
-            listItemData () {
-                if (this.data) {
-                    const set = new Set();
-                    const listItems = [];
-                    this.data.forEach(imageObj => {
-                        if (!set.has(imageObj.albumId)){
-                            set.add(imageObj.albumId);
-                            listItems.push({
-                                name: imageObj.albumName,
-                                id: imageObj.albumId
-                            });
-                        }
-                    });
-                    return listItems
-                }
-                return []
             }
         },
         methods: {
             async fetchData() {
                 const response = await this.$axios.get('/photos');
                 this.data = response.data;
+            },
+            filterPhotos (filterByIds) {
+                if (filterByIds.size) {
+                    this.data = this.allPhotos.filter(imageObj => filterByIds.has(imageObj.albumId));
+                } else {
+                    this.data = this.allPhotos.slice(0);
+                }
             }
         }
     }
