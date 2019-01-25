@@ -122,7 +122,7 @@ export default {
         { title: 'Home', icon: 'dashboard' },
         { title: 'Photos', icon: 'question_answer' },
         { title: 'Blog', icon: 'question_answer' },
-        { title: 'Contact', icon: 'question_answer' },
+        { title: 'Resume', icon: 'question_answer' },
       ],
       darkTheme: false,
       icons: [

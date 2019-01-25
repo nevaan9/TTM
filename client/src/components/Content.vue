@@ -74,11 +74,7 @@ export default {
                       {
                           id: 4,
                           name: 'China'
-                      },
-                      {
-                          id: 5,
-                          name: 'Israel'
-                      },
+                      }
                   ]
               }
             ]

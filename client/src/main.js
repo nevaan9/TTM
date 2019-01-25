@@ -20,7 +20,8 @@ Vue.config.productionTip = false;
 // Each route should map to a component. The "component" can
 // either be an actual component constructor created via
 const routes = [
-    { path: '/', name: 'Home', component: Home },
+    {path: '/', redirect: '/home'},
+    { path: '/home', name: 'Home', component: Home },
     { path: '/photos', name: 'Photos', component: Photos },
     { path: '/blog', name: 'Blog', component: Blog },
     { path: '/resume', name: 'Resume', component: Resume },

@@ -5,15 +5,51 @@ cors = require('cors');
 app = express();
 const port = process.env.PORT || 3000;
 
+function getRandomArbitrary(min, max) {
+    return parseInt(Math.random() * (max - min) + min);
+}
+
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
-const home_routes = require('./routes/home');
 
-// Initialize Routes
-app.use('/home', home_routes);
+// GET /home
+app.get('/home', (req, res) => {
+    res.send({
+        about: ['I am a second year student at St. Lawrence University', 'International Student', 'Career Services Intern', 'Hello World '],
+        cardColor: 'white',
+        img: 'https://picsum.photos/510/300',
+        textColor: 'black'
+    });
+});
+
+// GET /photos
+app.get('/photos', (req, res) => {
+    res.send([
+        {
+            url: `https://placekitten.com/${getRandomArbitrary(400, 800)}/${getRandomArbitrary(400, 800)}`,
+            caption: 'A cat in the pool',
+            album: 1
+        },
+        {
+            url: `https://placekitten.com/${getRandomArbitrary(400, 800)}/${getRandomArbitrary(400, 800)}`,
+            caption: 'A cat in the pool whwhw',
+            album: 1
+        },
+        {
+            url: `https://placekitten.com/${getRandomArbitrary(400, 800)}/${getRandomArbitrary(400, 800)}`,
+            caption: 'A cat in the pool ahahahshhq dqhdhqdhq dhqeh ehfhe hefhef',
+            album: 2
+        },
+        {
+            url: `https://placekitten.com/${getRandomArbitrary(400, 800)}/${getRandomArbitrary(400, 800)}`,
+            caption: '',
+            album: 3
+        },
+    ]);
+});
 
 // Handle Production
 // Point to which public folder is our entry point

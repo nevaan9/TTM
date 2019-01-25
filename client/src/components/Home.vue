@@ -33,7 +33,6 @@
                           :erase-on-complete='false'
                           caret-animation='blink'
                         >
-
                         </vue-typer>
                     </v-card-text>
                 </v-card>
