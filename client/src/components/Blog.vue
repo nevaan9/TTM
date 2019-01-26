@@ -3,11 +3,35 @@
             :side-bar-title="sideBarTitle"
     >
         <v-flex
-          v-for="n in 10"
-          :key="n"
-          xs12 sm6>
+          class="pa-1"
+          xs12
+          sm4
+        >
+            <p class="headline">Pinned</p>
+            <v-divider></v-divider>
             <v-card
-              class="mx-auto"
+              v-for="n in 5"
+              :key="n"
+              class="black--text my-2">
+                <v-card-title primary-title>
+                    <div>
+                        <div class="headline">Unlimited music now</div>
+                        <span>Listen to your favorite artists and albums whenever and wherever, online and offline.</span>
+                    </div>
+                </v-card-title>
+                <v-card-actions>
+                    <v-btn flat >Listen now</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-flex>
+        <v-flex
+          class="pa-1"
+          xs12 sm8>
+            <p class="headline">Blogs</p>
+            <v-divider></v-divider>
+            <v-card
+              class="my-2"
+              v-for="n in 10"
               color="#26c6da"
               dark
             >

@@ -5,17 +5,17 @@
       @filterClicked="filterPhotos"
     >
         <v-flex
-          class="grid"
+          class="grid py-0"
         >
             <v-layout
               column
               v-for="(image, i) in images"
               :key="i"
             >
-                <v-flex>
+                <v-flex class="py-0">
                     <img class="img" :src="image.url" :key="i" @click="index = i">
                 </v-flex>
-                <v-flex>
+                <v-flex class="py-0">
                     <span>{{ image.caption }}</span>
                 </v-flex>
             </v-layout>
@@ -99,9 +99,8 @@
 <style scoped>
     .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        grid-gap: 1rem;
-        align-items: center;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: .5rem;
     }
     .grid img {
         box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);

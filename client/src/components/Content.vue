@@ -1,13 +1,15 @@
 <template>
     <v-layout
+      row
       wrap
     >
         <!--NAV DRAWER-->
         <v-btn
-          class="accent mt-0 ml-0"
+          class="mt-0 ml-0"
           @click.stop="drawer = !drawer"
         >
-            <v-icon>mdi-image-album</v-icon>
+            Albums
+            <v-icon>mdi-menu-right</v-icon>
         </v-btn>
         <v-navigation-drawer
           v-model="drawer"
@@ -16,8 +18,6 @@
           temporary
         >
             <v-list
-              subheader
-              two-line
             >
                 <v-subheader>Filter by Album</v-subheader>
 
@@ -38,7 +38,9 @@
             </v-list>
         </v-navigation-drawer>
         <!--SLOT TO INJECT BLOG OR PHOTOS-->
-        <v-container fluid grid-list-lg style="padding-top: 0px">
+        <v-container
+          class="pt-0 px-2"
+          fluid grid-list-sm>
             <v-layout
               row
               wrap
