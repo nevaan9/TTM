@@ -12,8 +12,10 @@
             <v-card
               v-for="n in 5"
               :key="n"
-              class="black--text my-2">
-                <v-card-title primary-title>
+              class="my-2"
+              color="teal"
+            >
+                <v-card-title>
                     <div>
                         <div class="headline">Unlimited music now</div>
                         <span>Listen to your favorite artists and albums whenever and wherever, online and offline.</span>
@@ -30,34 +32,29 @@
             <p class="headline">Blogs</p>
             <v-divider></v-divider>
             <v-card
-              class="my-2"
-              v-for="n in 10"
-              color="#26c6da"
-              dark
+              class="mx-2 my-2"
             >
+                <v-img
+                  class="white--text"
+                  height="200px"
+                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                >
+                    <v-container fill-height fluid>
+                        <v-layout fill-height>
+                            <v-flex xs12 align-end flexbox>
+                                <span class="display-3">Title</span>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                </v-img>
                 <v-card-title>
-                    <v-icon
-                      large
-                      left
-                    >
-                        mdi-twitter
-                    </v-icon>
-                    <span class="title font-weight-light">Title</span>
+                    <div>
+                        <p class="subheading">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam commodi cupiditate fugit impedit in ipsum mollitia officiis quae quidem, quod quos sapiente soluta ullam. Deleniti excepturi ipsum perspiciatis vel veritatis?</p>
+                    </div>
                 </v-card-title>
-
-                <v-card-text class="title font-weight-bold">
-                    "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
-                </v-card-text>
-
                 <v-card-actions>
-                    <v-list-tile class="grow">
-                        <v-list-tile-content>
-                            <v-list-tile-title>{{ new Date() }}</v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                    <v-btn
-                      small
-                    > Read More </v-btn>
+                    <v-btn flat color="orange">Share</v-btn>
+                    <v-btn flat color="orange">Explore</v-btn>
                 </v-card-actions>
             </v-card>
         </v-flex>
@@ -87,5 +84,4 @@
 </script>
 
 <style scoped>
-
 </style>
