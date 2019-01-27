@@ -1,9 +1,13 @@
 // Import project dependancies
+require('./config/config');
+
 express = require('express');
 bodyParser = require('body-parser');
 cors = require('cors');
 app = express();
 const port = process.env.PORT || 3000;
+const {mongoose} = require('./db/mongoose');
+const {Home} = require('./models/Home');
 
 function getRandomArbitrary(min, max) {
     return parseInt(Math.random() * (max - min) + min);
@@ -13,18 +17,11 @@ function getRandomArbitrary(min, max) {
 app.use(bodyParser.json());
 app.use(cors());
 
-// Routes
-
 // GET /home
 app.get('/home', (req, res) => {
-    res.send({
-        about: ['I am a second year student at St. Lawrence University', 'International Student', 'Career Services Intern', 'Hello World '],
-        cardColor: 'white',
-        img: 'https://picsum.photos/510/300',
-        textColor: 'black',
-        marginAmount: 2,
-        typerText: ["Student","Economist","Traveller","Lover","Dreamer"]
-    });
+    Home.find().then((homeObj) => {
+        res.send(homeObj[0]);
+    }).catch(e => res.sendStatus(400).send(e));
 });
 
 // GET /photos

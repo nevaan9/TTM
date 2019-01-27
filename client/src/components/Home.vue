@@ -1,9 +1,9 @@
 <template>
     <v-container fill-height fluid grid-list-md>
         <v-layout
+          v-if="aboutData"
           row
           wrap>
-            <!--Web-->
             <v-flex v-if="!isMobile" d-flex xs12 sm6 md8>
                 <div :color="aboutData.cardColor">
                     <v-card-text
@@ -15,7 +15,7 @@
                     </v-card-text>
                 </div>
             </v-flex>
-            <v-flex v-if="!isMobile" d-flex xs12 sm6 md4>
+            <v-flex d-flex xs12 sm6 md4>
                 <v-img :src="aboutData.img" aspect-ratio="1:10">
                     <v-layout
                       class="align-center justify-center"
@@ -42,6 +42,8 @@
                 </v-img>
             </v-flex>
         </v-layout>
+        <div v-else-if="error">Error Loading Data</div>
+        <div v-else>Loading</div>
     </v-container>
 </template>
 
@@ -55,7 +57,8 @@
       data: function () {
           return {
               url: '/home',
-              requestData: null
+              requestData: null,
+              error: null
           }
       },
       methods: {
@@ -72,11 +75,11 @@
               }
           },
           aboutData () {
-              return this.requestData || 'Loading...'
+              return this.requestData;
           }
       },
       created() {
-          this.fetchData().catch(e => this.requestData = new Error(e));
+          this.fetchData().catch(e => this.error = new Error(e));
       }
   }
 </script>
