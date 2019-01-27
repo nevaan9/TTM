@@ -6,37 +6,16 @@
             <!--Web-->
             <v-flex v-if="!isMobile" d-flex xs12 sm6 md8>
                 <div :color="aboutData.cardColor">
-                    <div
-                      :class="['text-md-left', 'headline', `${aboutData.textColor}--text`]"
+                    <v-card-text
+                      :class="['text-md-left', 'title', `${aboutData.textColor}--text`, `mb-${aboutData.marginAmount}`]"
                       v-for="(aboutItem, index) in aboutData.about"
                       :key="index"
                     >
                         {{ aboutItem }}
-                    </div>
-                    <div
-                      :class="['text-xs-center', 'text-md-left', 'headline', `${aboutData.textColor}--text`]"
-                    >
-                        <vue-typer
-                          :text='["Student","Economist","Traveller","Lover","Dreamer"]'
-                          :repeat='Infinity'
-                          :shuffle='false'
-                          initial-action='typing'
-                          :pre-type-delay='70'
-                          :type-delay='70'
-                          :pre-erase-delay='2000'
-                          :erase-delay='250'
-                          erase-style='clear'
-                          :erase-on-complete='false'
-                          caret-animation='blink'
-                        >
-                        </vue-typer>
-                    </div>
+                    </v-card-text>
                 </div>
             </v-flex>
             <v-flex v-if="!isMobile" d-flex xs12 sm6 md4>
-                <v-img :src="aboutData.img" aspect-ratio="1:10"></v-img>
-            </v-flex>
-            <v-flex v-if="isMobile" d-flex>
                 <v-img :src="aboutData.img" aspect-ratio="1:10">
                     <v-layout
                       class="align-center justify-center"
@@ -45,7 +24,7 @@
                           class="headline ml-1 mt-1"
                         >
                             <vue-typer
-                              :text='["Student","Economist","Traveller","Lover","Dreamer"]'
+                              :text=aboutData.typerText
                               :repeat='Infinity'
                               :shuffle='false'
                               initial-action='typing'
@@ -103,5 +82,7 @@
 </script>
 
 <style scoped>
-
+    v-card-text {
+        background-color: black;
+    }
 </style>

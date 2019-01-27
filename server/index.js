@@ -21,7 +21,9 @@ app.get('/home', (req, res) => {
         about: ['I am a second year student at St. Lawrence University', 'International Student', 'Career Services Intern', 'Hello World '],
         cardColor: 'white',
         img: 'https://picsum.photos/510/300',
-        textColor: 'black'
+        textColor: 'black',
+        marginAmount: 2,
+        typerText: ["Student","Economist","Traveller","Lover","Dreamer"]
     });
 });
 
