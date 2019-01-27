@@ -59,10 +59,6 @@
           <v-list-tile-avatar>
             <img src="https://randomuser.me/api/portraits/men/85.jpg">
           </v-list-tile-avatar>
-
-          <v-list-tile-content>
-            <v-list-tile-title>John Leider</v-list-tile-title>
-          </v-list-tile-content>
         </v-list-tile>
       </v-list>
 
@@ -108,13 +104,30 @@
         </v-card-title>
       </v-card>
     </v-footer>
+
+    <!--EDIT DIALOG-->
+    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+      <component
+        :is="selectedComponent"
+        @closeDialog="dialog = false"
+      ></component>
+    </v-dialog>
   </v-app>
 </template>
 
 <script>
-
+  import EditHome from './components/EditHome'
+  import EditPhotos from './components/EditPhotos'
+  import EditBlog from './components/EditBlog'
+  import EditResume from './components/EditResume'
 export default {
   name: 'App',
+  components: {
+    EditHome,
+    EditPhotos,
+    EditBlog,
+    EditResume
+  },
   data () {
     return {
       drawer: null,
@@ -130,7 +143,13 @@ export default {
         'mdi-instagram',
         'mdi-linkedin',
         'mdi-twitter',
-      ]
+      ],
+      selectedComponent: '',
+      dialog: false,
+      notifications: false,
+      sound: true,
+      widgets: false
+
     }
   },
   methods: {
@@ -141,7 +160,8 @@ export default {
       this.darkTheme = !this.darkTheme;
     },
     toggleEditDialog (routeName) {
-      alert(routeName)
+      this.selectedComponent = `Edit${routeName}`;
+      this.dialog = true;
     }
   },
   computed: {
