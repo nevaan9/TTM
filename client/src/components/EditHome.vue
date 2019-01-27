@@ -20,16 +20,34 @@
           <v-card>
             <v-card-title class="headline"> About me bullets </v-card-title>
             <v-card-text>
-              <v-textarea>
-              </v-textarea>
-              <v-btn>Add bullet point</v-btn>
+              <v-text-field
+                v-model="bio"
+                box
+                color="deep-purple"
+                label="Bio"
+              ></v-text-field>
+              <v-btn
+                @click="addBioBullet"
+              >Add bullet point</v-btn>
             </v-card-text>
             <v-card-text>
-              <ul>
-                <li v-for="n in 7"
-                    :key="n"
-                > {{ n }}</li>
-              </ul>
+              <v-list>
+                <v-list-tile
+                  v-for="(bullets, i) in bioArray"
+                  :key="i"
+                >
+                  <v-list-tile-content>
+                    {{ bullets }}
+                  </v-list-tile-content>
+                  <v-list-tile-action>
+                    <v-btn
+                      @click="bioArray.splice(i, 1)"
+                    >
+                      Delete
+                    </v-btn>
+                  </v-list-tile-action>
+                </v-list-tile>
+              </v-list>
             </v-card-text>
             <v-card-actions>
               <v-btn>Sumbit</v-btn>
@@ -39,18 +57,36 @@
         <!--2-->
         <v-flex xs12 md6>
           <v-card>
-            <v-card-title class="headline"> About me bullets </v-card-title>
+            <v-card-title class="headline"> Typer Text </v-card-title>
             <v-card-text>
-              <v-textarea>
-              </v-textarea>
-              <v-btn>Add bullet point</v-btn>
+              <v-text-field
+                v-model="typerText"
+                box
+                color="deep-purple"
+                label="Typer Text"
+              ></v-text-field>
+              <v-btn
+                @click="addTyperText"
+              >Add Typer Text</v-btn>
             </v-card-text>
             <v-card-text>
-              <ul>
-                <li v-for="n in 7"
-                    :key="n"
-                > {{ n }}</li>
-              </ul>
+              <v-list>
+                <v-list-tile
+                  v-for="(typerText, i) in typerTextArray"
+                  :key="i"
+                >
+                  <v-list-tile-content>
+                    {{ typerText }}
+                  </v-list-tile-content>
+                  <v-list-tile-action>
+                    <v-btn
+                      @click="typerTextArray.splice(i, 1)"
+                    >
+                      Delete
+                    </v-btn>
+                  </v-list-tile-action>
+                </v-list-tile>
+              </v-list>
             </v-card-text>
             <v-card-actions>
               <v-btn>Sumbit</v-btn>
@@ -75,7 +111,72 @@
           <v-card>
             <v-card-title>Styling and Colors</v-card-title>
             <v-card-text>
-              <color-picker v-model="color"></color-picker>
+              <v-layout
+                row
+                wrap
+              >
+                <v-flex
+                  shrink
+                >
+                  <color-picker
+                    theme="light"
+                    :color="color"
+                    :sucker-hide="false"
+                    :sucker-canvas="suckerCanvas"
+                    :sucker-area="suckerArea"
+                    @changeColor="changeColor"
+                    @openSucker="openSucker"
+                  />
+                </v-flex>
+                <v-flex
+                  shrink
+                >
+                  <v-card>
+                    <v-list>
+                      <v-radio-group v-model="radioGroup">
+                        <v-list-tile
+                          v-for="n in 3"
+                          :key="n"
+                        >
+                          <v-list-tile-action>
+                            <v-radio
+                              :label="`Radio ${n}`"
+                              :value="n"
+                            ></v-radio>
+                          </v-list-tile-action>
+                          <v-list-tile-action>
+                            <v-btn
+                              @click="sumbitColor()"
+                              small
+                              fab
+                              flat
+                            >
+                              <v-icon>
+                                add
+                              </v-icon>
+                            </v-btn>
+                          </v-list-tile-action>
+                          <v-list-tile-action>
+                            <v-icon
+                              x-large
+                              :color="radioColors[`${n}`]">
+                              mdi-square</v-icon>
+                          </v-list-tile-action>
+                        </v-list-tile>
+                      </v-radio-group>
+                      <!---->
+                      <v-list-tile>
+                        <v-list-tile-action>
+                          <v-select
+                            :items="[1,2,3,4,5]"
+                            label="Margin Between Bullet Points"
+                          ></v-select>
+                        </v-list-tile-action>
+                      </v-list-tile>
+                    </v-list>
+                  </v-card>
+                </v-flex>
+              </v-layout>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -85,10 +186,58 @@
 </template>
 
 <script>
+  import colorPicker from '@caohenghu/vue-colorpicker'
   export default {
     name: 'EditHome',
+    components: {
+      colorPicker
+    },
     data () {
       return {
+        bio: '',
+        bioArray: ['Hello', 'Hi'],
+        typerText: '',
+        typerTextArray: ['Yi', 'Hi', 'Ji'],
+        color: '#59c7f9',
+        suckerCanvas: null,
+        suckerArea: [],
+        isSucking: false,
+        radioGroup: 1,
+        radioColors: {
+          1: 'red',
+          2: 'blue',
+          3: 'green'
+        },
+      }
+    },
+    methods: {
+      changeColor(color) {
+        const {r, g, b, a} = color.rgba;
+        this.color = `rgba(${r}, ${g}, ${b}, ${a})`
+      },
+      openSucker(isOpen) {
+        if (isOpen) {
+          // ... canvas be created
+          // this.suckerCanvas = canvas
+          // this.suckerArea = [x1, y1, x2, y2]
+        } else {
+          // this.suckerCanvas && this.suckerCanvas.remove
+        }
+      },
+      sumbitColor() {
+        this.radioColors[`${this.radioGroup}`] = this.color;
+      },
+      addBioBullet() {
+        if (this.bio.trim() !== ''){
+          this.bioArray.push(this.bio.trim());
+          this.bio = '';
+        }
+      },
+      addTyperText() {
+        if (this.typerText.trim() !== ''){
+          this.typerTextArray.push(this.typerText.trim());
+          this.typerText = '';
+        }
       }
     }
   }
