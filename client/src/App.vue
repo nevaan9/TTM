@@ -109,7 +109,7 @@
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <component
         :is="selectedComponent"
-        @closeDialog="dialog = false"
+        @closeDialog="closeDialogCalled"
       ></component>
     </v-dialog>
   </v-app>
@@ -162,6 +162,13 @@ export default {
     toggleEditDialog (routeName) {
       this.selectedComponent = `Edit${routeName}`;
       this.dialog = true;
+    },
+    closeDialogCalled(saveButtonHit) {
+      if (saveButtonHit){
+        this.$router.go();
+      } else {
+        this.dialog = false;
+      }
     }
   },
   computed: {

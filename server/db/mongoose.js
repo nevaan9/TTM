@@ -9,9 +9,11 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
       new Home({
         about: ['HELLO FRIEND'],
         img: 'https://picsum.photos/510/300',
-        cardColor: 'white',
-        textColor: 'black',
-        footerColor: 'white',
+        colors: {
+          cardColor: 'white',
+          textColor: 'black',
+          footerColor: 'white',
+        },
         typerText: ["DREAMER"],
         marginAmount: 2,
       }).save().then(() => {

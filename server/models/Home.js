@@ -9,17 +9,9 @@ const Home = mongoose.model('Home', {
     type: String,
     required: true
   },
-  cardColor: {
-    type: String,
-    required: true
-  },
-  textColor: {
-    type: String,
-    required: true
-  },
-  footerColor: {
-    type: String,
-    required: true
+  colors: {
+    type: Object,
+    required: true,
   },
   marginAmount: {
     type: Number,

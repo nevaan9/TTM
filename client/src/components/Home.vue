@@ -5,9 +5,9 @@
           row
           wrap>
             <v-flex v-if="!isMobile" d-flex xs12 sm6 md8>
-                <div :color="aboutData.cardColor">
+                <div :style="cardStyles">
                     <v-card-text
-                      :class="['text-md-left', 'title', `${aboutData.textColor}--text`, `mb-${aboutData.marginAmount}`]"
+                      :class="['text-md-left', 'title', `mb-${aboutData.marginAmount}`]"
                       v-for="(aboutItem, index) in aboutData.about"
                       :key="index"
                     >
@@ -76,6 +76,12 @@
           },
           aboutData () {
               return this.requestData;
+          },
+          cardStyles() {
+              return {
+                  'background-color': `${this.aboutData.colors.cardColor}`,
+                  'color': `${this.aboutData.colors.textColor}`
+              }
           }
       },
       created() {
@@ -85,7 +91,4 @@
 </script>
 
 <style scoped>
-    v-card-text {
-        background-color: black;
-    }
 </style>

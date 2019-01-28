@@ -24,6 +24,21 @@ app.get('/home', (req, res) => {
     }).catch(e => res.sendStatus(400).send(e));
 });
 
+// POST /home
+app.post('/home', (req, res) => {
+    const data = req.body.homePageData;
+    Home.findById(data._id).then((homeObj) => {
+        homeObj.about = data.about;
+        homeObj.img = data.img;
+        homeObj.colors = data.colors;
+        homeObj.marginAmount = data.marginAmount;
+        homeObj.typerText = data.typerText;
+        return homeObj.save();
+    }).then((updatedData) => {
+        res.sendStatus(200).send(updatedData);
+    }).catch(e => new Error(e));
+});
+
 // GET /photos
 app.get('/photos', (req, res) => {
     res.send([

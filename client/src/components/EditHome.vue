@@ -1,13 +1,13 @@
 <template>
-  <v-card>
+  <v-card v-if="homePageData">
     <v-toolbar dark color="primary">
-      <v-btn icon dark @click="$emit('closeDialog')">
+      <v-btn icon dark @click="$emit('closeDialog', false)">
         <v-icon>close</v-icon>
       </v-btn>
       <v-toolbar-title>Settings</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn dark flat @click="$emit('closeDialog')">Save</v-btn>
+        <v-btn dark flat @click="submitForm">Save</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-container class="grid-list-lg">
@@ -33,7 +33,7 @@
             <v-card-text>
               <v-list>
                 <v-list-tile
-                  v-for="(bullets, i) in bioArray"
+                  v-for="(bullets, i) in homePageData.about"
                   :key="i"
                 >
                   <v-list-tile-content>
@@ -41,7 +41,7 @@
                   </v-list-tile-content>
                   <v-list-tile-action>
                     <v-btn
-                      @click="bioArray.splice(i, 1)"
+                      @click="homePageData.about.splice(i, 1)"
                     >
                       Delete
                     </v-btn>
@@ -49,9 +49,6 @@
                 </v-list-tile>
               </v-list>
             </v-card-text>
-            <v-card-actions>
-              <v-btn>Sumbit</v-btn>
-            </v-card-actions>
           </v-card>
         </v-flex>
         <!--2-->
@@ -72,7 +69,7 @@
             <v-card-text>
               <v-list>
                 <v-list-tile
-                  v-for="(typerText, i) in typerTextArray"
+                  v-for="(typerText, i) in homePageData.typerText"
                   :key="i"
                 >
                   <v-list-tile-content>
@@ -80,7 +77,7 @@
                   </v-list-tile-content>
                   <v-list-tile-action>
                     <v-btn
-                      @click="typerTextArray.splice(i, 1)"
+                      @click="homePageData.typerText.splice(i, 1)"
                     >
                       Delete
                     </v-btn>
@@ -88,9 +85,6 @@
                 </v-list-tile>
               </v-list>
             </v-card-text>
-            <v-card-actions>
-              <v-btn>Sumbit</v-btn>
-            </v-card-actions>
           </v-card>
         </v-flex>
         <!--3-->
@@ -121,53 +115,50 @@
                   <color-picker
                     theme="light"
                     :color="color"
-                    :sucker-hide="false"
-                    :sucker-canvas="suckerCanvas"
-                    :sucker-area="suckerArea"
                     @changeColor="changeColor"
-                    @openSucker="openSucker"
                   />
                 </v-flex>
                 <v-flex
                   shrink
                 >
                   <v-card>
-                    <v-list>
-                      <v-radio-group v-model="radioGroup">
-                        <v-list-tile
-                          v-for="n in 3"
-                          :key="n"
-                        >
-                          <v-list-tile-action>
-                            <v-radio
-                              :label="`Radio ${n}`"
-                              :value="n"
-                            ></v-radio>
-                          </v-list-tile-action>
-                          <v-list-tile-action>
-                            <v-btn
-                              @click="sumbitColor()"
-                              small
-                              fab
-                              flat
-                            >
-                              <v-icon>
-                                add
-                              </v-icon>
-                            </v-btn>
-                          </v-list-tile-action>
-                          <v-list-tile-action>
-                            <v-icon
-                              x-large
-                              :color="radioColors[`${n}`]">
-                              mdi-square</v-icon>
-                          </v-list-tile-action>
-                        </v-list-tile>
-                      </v-radio-group>
-                      <!---->
-                      <v-list-tile>
+                    <v-list
+                    >
+                      <v-list-tile
+                        class="mb-2"
+                        v-for="(value, key) in homePageData.colors"
+                        :key="key"
+                      >
+                        <v-list-tile-content>
+                          {{ key }}
+                        </v-list-tile-content>
+                        <v-list-tile-action>
+                          <v-btn
+                            dark
+                            @click="sumbitColor(key)"
+                            small
+                            fab
+                          >
+                            <v-icon>
+                              mdi-arrow-right
+                            </v-icon>
+                          </v-btn>
+                        </v-list-tile-action>
+                        <v-list-tile-action>
+                          <v-icon
+                            style="border-style: solid; border-color: black"
+                            x-large
+                            :color="value">
+                            mdi-square</v-icon>
+                        </v-list-tile-action>
+                      </v-list-tile>
+                      <!--Margin Select-->
+                      <v-list-tile
+                        class="mt-5"
+                      >
                         <v-list-tile-action>
                           <v-select
+                            v-model="homePageData.marginAmount"
                             :items="[1,2,3,4,5]"
                             label="Margin Between Bullet Points"
                           ></v-select>
@@ -194,51 +185,46 @@
     },
     data () {
       return {
+        homePageData: null,
+        error: null,
         bio: '',
-        bioArray: ['Hello', 'Hi'],
         typerText: '',
-        typerTextArray: ['Yi', 'Hi', 'Ji'],
         color: '#59c7f9',
-        suckerCanvas: null,
-        suckerArea: [],
-        isSucking: false,
-        radioGroup: 1,
-        radioColors: {
-          1: 'red',
-          2: 'blue',
-          3: 'green'
-        },
       }
     },
     methods: {
+      async fetchData () {
+        const response = await this.$axios.get('/home');
+        this.homePageData = response.data;
+      },
       changeColor(color) {
-        const {r, g, b, a} = color.rgba;
-        this.color = `rgba(${r}, ${g}, ${b}, ${a})`
+        this.color = color.rgba.toHexString();
       },
-      openSucker(isOpen) {
-        if (isOpen) {
-          // ... canvas be created
-          // this.suckerCanvas = canvas
-          // this.suckerArea = [x1, y1, x2, y2]
-        } else {
-          // this.suckerCanvas && this.suckerCanvas.remove
-        }
-      },
-      sumbitColor() {
-        this.radioColors[`${this.radioGroup}`] = this.color;
+      sumbitColor(key) {
+        this.homePageData.colors[key] = this.color;
       },
       addBioBullet() {
         if (this.bio.trim() !== ''){
-          this.bioArray.push(this.bio.trim());
+          this.homePageData.about.push(this.bio.trim());
           this.bio = '';
         }
       },
       addTyperText() {
         if (this.typerText.trim() !== ''){
-          this.typerTextArray.push(this.typerText.trim());
+          this.homePageData.typerText.push(this.typerText.trim());
           this.typerText = '';
         }
+      },
+      submitForm () {
+        this.$axios.post('/home', {
+          homePageData: this.homePageData
+        }).then(() => {
+          this.$emit('closeDialog', true);
+        }).catch(e => alert(e.message));
       }
+    },
+    created () {
+      this.fetchData().catch(e => this.error = new Error(e.message));
     }
   }
 </script>
