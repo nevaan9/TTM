@@ -61,7 +61,8 @@ export default {
         },
         listItemData: {
             type: Array,
-            required: true
+            required: true,
+            default: () => []
         }
     },
     data () {

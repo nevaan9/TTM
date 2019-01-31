@@ -35,7 +35,6 @@
             Content
         },
         beforeRouteEnter (to, from, next) {
-            console.log('Before Enter....');
             axios.get('/photos')
               .then(response => {
                 next(vm => {

@@ -1,6 +1,7 @@
 <template>
     <Content
             :side-bar-title="sideBarTitle"
+            :listItemData="listItemData"
     >
         <v-flex
           class="pa-1"
@@ -10,15 +11,15 @@
             <p class="headline">Pinned</p>
             <v-divider></v-divider>
             <v-card
-              v-for="n in 5"
-              :key="n"
+              v-for="(pin, i) in pinned"
+              :key="i"
               class="my-2"
               color="teal"
             >
                 <v-card-title>
                     <div>
-                        <div class="headline">Unlimited music now</div>
-                        <span>Listen to your favorite artists and albums whenever and wherever, online and offline.</span>
+                        <div class="headline">{{ pin.title }}</div>
+                        <span>{{ pin.preview }}</span>
                     </div>
                 </v-card-title>
                 <v-card-actions>
@@ -31,32 +32,43 @@
           xs12 sm8>
             <p class="headline">Blogs</p>
             <v-divider></v-divider>
-            <v-card
-              class="mx-2 my-2"
-            >
-                <v-img
-                  class="white--text"
-                  height="200px"
-                  src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+            <h2 v-if="!blogs.length">No blogs posted yet!</h2>
+            <template v-else>
+                <v-card
+                  v-for="(blog, i) in blogs"
+                  :key="i"
+                  class="mx-2 my-2"
                 >
-                    <v-container fill-height fluid>
-                        <v-layout fill-height>
-                            <v-flex xs12 align-end flexbox>
-                                <span class="display-3">Title</span>
-                            </v-flex>
-                        </v-layout>
-                    </v-container>
-                </v-img>
-                <v-card-title>
-                    <div>
-                        <p class="subheading">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam commodi cupiditate fugit impedit in ipsum mollitia officiis quae quidem, quod quos sapiente soluta ullam. Deleniti excepturi ipsum perspiciatis vel veritatis?</p>
-                    </div>
-                </v-card-title>
-                <v-card-actions>
-                    <v-btn flat color="orange">Share</v-btn>
-                    <v-btn flat color="orange">Explore</v-btn>
-                </v-card-actions>
-            </v-card>
+                    <v-img
+                      class="white--text"
+                      height="200px"
+                      src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                    >
+                        <v-container fill-height fluid>
+                            <v-layout fill-height>
+                                <v-flex xs12 align-end flexbox>
+                                    <span class="display-3">{{ blog.title }}</span>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
+                    </v-img>
+                    <v-card-title>
+                        <div>
+                            <p class="subheading">{{ blog.preview }}</p>
+                        </div>
+                    </v-card-title>
+                    <v-card-actions>
+                        <v-btn flat color="orange">Share</v-btn>
+                        <v-btn flat color="orange">Explore</v-btn>
+                    </v-card-actions>
+                </v-card>
+                <div class="text-xs-center">
+                    <v-pagination
+                      v-model="page"
+                      :length="totalPageCount"
+                    ></v-pagination>
+                </div>
+            </template>
         </v-flex>
     </Content>
 </template>
@@ -72,13 +84,45 @@
             return {
                 sideBarTitle: 'All Blogs',
                 drawer: null,
-                items: [
-                    { title: 'All Photos', icon: 'dashboard' },
-                    { title: 'SLU', icon: 'question_answer' },
-                    { title: 'China', icon: 'question_answer' },
-                ],
-                right: null,
+                blogs: [],
+                pinned: [],
+                totalPageCount: 1,
+                page: null,
+                limit: null,
+                listItemData: []
             }
+        },
+        methods: {
+            async fetchData () {
+                // eslint-disable-next-line
+                console.log('Inside fetch');
+                const response = await this.$axios.get(this.$route.fullPath);
+                this.totalPageCount = response.data.pageCount;
+                this.blogs = response.data.blogs;
+                this.pinned = response.data.pinned;
+            }
+        },
+        watch: {
+            page(val) {
+                // eslint-disable-next-line
+                console.log('Inside watch page');
+                this.$router.push(
+                  { name: 'Blog', query: { limit: this.limit, page: val || 1 } });
+            },
+            '$route' () {
+                // eslint-disable-next-line
+                console.log('Inside watch route');
+                this.fetchData();
+            }
+        },
+        beforeRouteEnter (to, from, next) {
+            next(vm => {
+                // eslint-disable-next-line
+                console.log('Inside before enter');
+                if (from.path === '/') vm.fetchData();
+                vm.page = parseInt(vm.$route.query.page) || 1;
+                vm.limit = 3;
+            });
         }
     }
 </script>

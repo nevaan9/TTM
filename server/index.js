@@ -69,6 +69,26 @@ app.get('/photos', (req, res) => {
     ]);
 });
 
+// GET /blogs
+app.get('/blog', (req, res) => {
+    blogs = [];
+    for (let i = 0; i < 15; i++) {
+        blogs.push({
+            title: i,
+            preview: `Some preview :)`,
+            pinned: Math.random()
+        })
+    }
+    const totalData = blogs.length;
+    const limit = parseInt(req.query.limit);
+    const pageNumber = parseInt(req.query.page);
+    res.send({
+        blogs: blogs.slice((pageNumber-1)*limit, pageNumber * limit),
+        pageCount: parseInt(totalData / limit),
+        pinned: blogs.filter(blog => blog.pinned > 0.8)
+    })
+});
+
 // Handle Production
 // Point to which public folder is our entry point
 if (process.env.NODE_ENV === 'production') {
