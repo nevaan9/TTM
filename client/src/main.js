@@ -39,7 +39,23 @@ const routes = [
             next();
         }
     },
-    { path: '/photos', name: 'Photos', component: Photos },
+    {
+        path: '/photos',
+        name: 'Photos',
+        component: Photos,
+        props: true,
+        async beforeEnter (to, from, next) {
+            try {
+                console.log('Getting Photos');
+                const response = await axios.get('/photos');
+                console.log('GOT Photos');
+                to.params.allPhotos = response.data;
+            } catch (e) {
+                to.params.error = {e: e, message: e.message}
+            }
+            next();
+        }
+    },
     { path: '/blog', name: 'Blog', component: Blog },
     { path: '/resume', name: 'Resume', component: Resume },
 ];

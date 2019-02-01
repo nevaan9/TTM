@@ -27,49 +27,31 @@
 <script>
     import Content from './Content'
     import VueGallerySlideshow from 'vue-gallery-slideshow';
-    import axios from 'axios'
     export default {
         name: 'Photos',
+        props: {
+            allPhotos: {
+                type: Array
+            },
+            error: {
+                type: Object
+            }
+        },
         components: {
             VueGallerySlideshow,
             Content
         },
-        beforeRouteEnter (to, from, next) {
-            axios.get('/photos')
-              .then(response => {
-                next(vm => {
-                    vm.data = response.data;
-                    vm.allPhotos = response.data;
-                    vm.listItemData = (function (data) {
-                        const set = new Set();
-                        const listItems = [];
-                        data.forEach(imageObj => {
-                            if (!set.has(imageObj.albumId)){
-                                set.add(imageObj.albumId);
-                                listItems.push({
-                                    name: imageObj.albumName,
-                                    id: imageObj.albumId
-                                });
-                            }
-                        });
-                        return listItems
-                    })(response.data);
-                });
-            });
-        },
         data () {
             return {
                 sideBarTitle: 'All Photos',
-                data: null,
                 index: null,
-                error: null,
-                loading: null,
-                listItemData: [],
-                allPhotos: null
+                data: [],
+                listItemData: []
             }
         },
         created () {
-            this.fetchData ();
+            this.data = this.$route.params.allPhotos || [];
+            this.listItemData = this.createListItemList(this.$route.params.allPhotos);
         },
         computed: {
             images () {
@@ -80,16 +62,26 @@
             }
         },
         methods: {
-            async fetchData() {
-                const response = await this.$axios.get('/photos');
-                this.data = response.data;
-            },
             filterPhotos (filterByIds) {
                 if (filterByIds.size) {
                     this.data = this.allPhotos.filter(imageObj => filterByIds.has(imageObj.albumId));
                 } else {
                     this.data = this.allPhotos.slice(0);
                 }
+            },
+            createListItemList (data = []) {
+                const set = new Set();
+                const listItems = [];
+                data.forEach(imageObj => {
+                    if (!set.has(imageObj.albumId)){
+                        set.add(imageObj.albumId);
+                        listItems.push({
+                            name: imageObj.albumName,
+                            id: imageObj.albumId
+                        });
+                    }
+                });
+                return listItems
             }
         }
     }
