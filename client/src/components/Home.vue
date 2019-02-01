@@ -42,8 +42,7 @@
                 </v-img>
             </v-flex>
         </v-layout>
-        <div v-else-if="error">Error Loading Data</div>
-        <div v-else>Loading</div>
+        <div v-else-if="error">{{ error.message }}</div>
     </v-container>
 </template>
 
@@ -51,21 +50,16 @@
     import { VueTyper } from 'vue-typer'
   export default {
       name: 'Home',
+      props: {
+          aboutData: {
+              type: Object
+          },
+          error: {
+              type: Object
+          }
+      },
       components: {
           VueTyper
-      },
-      data: function () {
-          return {
-              url: '/home',
-              requestData: null,
-              error: null
-          }
-      },
-      methods: {
-          async fetchData () {
-              const response = await this.$axios.get(this.url);
-              this.requestData = response.data;
-          }
       },
       computed: {
           isMobile () {
@@ -74,18 +68,12 @@
                   default: return false;
               }
           },
-          aboutData () {
-              return this.requestData;
-          },
           cardStyles() {
               return {
                   'background-color': `${this.aboutData.colors.cardColor}`,
                   'color': `${this.aboutData.colors.textColor}`
               }
           }
-      },
-      created() {
-          this.fetchData().catch(e => this.error = new Error(e));
       }
   }
 </script>
